@@ -19,19 +19,18 @@ public class Client {
             out = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()), true);
 
             System.out.println("Введите свой никнейм:");
-            String name = scanner.nextLine();
-            out.println(name);
-            System.out.println(in.readLine());
+            out.println(scanner.nextLine());
 
-            String message;
-            while (true) {
+            Receiver receiver = new Receiver(in);
+            receiver.start();
+
+            String message = "";
+            while (!"exit".equals(message)) {
                 message = scanner.nextLine();
                 out.println(message);
-                System.out.println(in.readLine());
-                if ("exit".equals(message)) {
-                    break;
-                }
             }
+
+            receiver.interrupt();
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -42,11 +41,31 @@ public class Client {
     private void closeAll() {
         try {
             scanner.close();
-            socket.close();
             in.close();
             out.close();
+            socket.close();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    private class Receiver extends Thread {
+
+        private final BufferedReader in;
+
+        public Receiver(BufferedReader in) {
+            this.in = in;
+        }
+
+        @Override
+        public void run() {
+            try {
+                while (!Thread.currentThread().isInterrupted()) {
+                    System.out.println(in.readLine());
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
