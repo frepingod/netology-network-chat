@@ -1,4 +1,6 @@
-package ru.netology;
+package ru.netology.server;
+
+import ru.netology.log.Logger;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -12,6 +14,8 @@ import java.util.List;
 
 public class Server {
 
+    private final Logger log = Logger.getInstance();
+
     private ServerSocket serverSocket;
     private Socket socket;
 
@@ -20,6 +24,7 @@ public class Server {
     public void listen(int port) {
         try {
             serverSocket = new ServerSocket(port);
+            log.log("Server started!");
             System.out.println("Server started!");
 
             while (true) {
@@ -29,8 +34,10 @@ public class Server {
                 connection.start();
             }
         } catch (IOException e) {
+            log.log("Ошибка в методе listen() у класса " + Server.class.getName());
             e.printStackTrace();
         } finally {
+            log.log("Закрытие потоков у класса " + Server.class.getName());
             closeAll();
         }
     }
@@ -40,6 +47,7 @@ public class Server {
             serverSocket.close();
             socket.close();
         } catch (IOException e) {
+            log.log("Ошибка при закрытии потоков у класса " + Server.class.getName());
             e.printStackTrace();
         }
     }
@@ -54,6 +62,7 @@ public class Server {
                 in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 out = new PrintWriter(socket.getOutputStream(), true);
             } catch (IOException e) {
+                log.log("Ошибка в конструкторе у класса " + Connection.class.getName());
                 e.printStackTrace();
             }
         }
@@ -62,7 +71,7 @@ public class Server {
         public void run() {
             try {
                 String name = in.readLine();
-
+                log.log(name + " cames now");
                 sendMessageAllConnection(name + " cames now");
 
                 String message;
@@ -71,13 +80,17 @@ public class Server {
                     if ("exit".equals(message)) {
                         break;
                     }
+                    log.log(name + ": " + message);
                     sendMessageAllConnection(name + ": " + message);
                 }
 
+                log.log(name + " has left");
                 sendMessageAllConnection(name + " has left");
             } catch (IOException e) {
+                log.log("Ошибка в методе run() у класса " + Connection.class.getName());
                 e.printStackTrace();
             } finally {
+                log.log("Закрытие потоков у класса " + Connection.class.getName());
                 closeAll();
             }
         }

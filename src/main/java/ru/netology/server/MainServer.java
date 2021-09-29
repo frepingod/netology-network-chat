@@ -1,4 +1,6 @@
-package ru.netology;
+package ru.netology.server;
+
+import ru.netology.Const;
 
 public class MainServer {
 
