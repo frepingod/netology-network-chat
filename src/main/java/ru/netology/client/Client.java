@@ -1,6 +1,6 @@
 package ru.netology.client;
 
-import ru.netology.Const;
+import ru.netology.Config;
 import ru.netology.log.Logger;
 
 import java.io.*;
@@ -8,6 +8,8 @@ import java.net.Socket;
 import java.util.Scanner;
 
 public class Client {
+
+    Config config = Config.getInstance();
 
     private final Logger log = Logger.getInstance();
 
@@ -19,7 +21,7 @@ public class Client {
     public Client() {
         try {
             scanner = new Scanner(System.in);
-            socket = new Socket(Const.HOST, Const.PORT);
+            socket = new Socket(config.getHost(), config.getPort());
             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             out = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()), true);
 

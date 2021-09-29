@@ -19,3 +19,15 @@
 2021-09-29 21:17:52 cl1 has left
 2021-09-29 21:17:52 Закрытие потоков у класса ru.netology.server.Server$Connection
 2021-09-29 21:17:52 Закрытие потоков у класса ru.netology.client.Client
+2021-09-29 22:33:51 Server started!
+2021-09-29 22:33:56 Клиенту предлагают ввести свой никнейм
+2021-09-29 22:34:00 nick cames now
+2021-09-29 22:34:03 Клиенту предлагают ввести свой никнейм
+2021-09-29 22:34:07 nonick cames now
+2021-09-29 22:34:09 nonick: ahaha
+2021-09-29 22:34:12 nonick has left
+2021-09-29 22:34:12 Закрытие потоков у класса ru.netology.server.Server$Connection
+2021-09-29 22:34:12 Закрытие потоков у класса ru.netology.client.Client
+2021-09-29 22:34:18 nick: weghriwe
+2021-09-29 22:34:20 Ошибка в методе run() у класса ru.netology.server.Server$Connection
+2021-09-29 22:34:20 Закрытие потоков у класса ru.netology.server.Server$Connection

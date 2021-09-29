@@ -1,11 +1,12 @@
 package ru.netology.server;
 
-import ru.netology.Const;
+import ru.netology.Config;
 
 public class MainServer {
 
     public static void main(String[] args) {
+        Config config = Config.getInstance();
         Server server = new Server();
-        server.listen(Const.PORT);
+        server.listen(config.getPort());
     }
 }
