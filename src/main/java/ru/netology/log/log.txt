@@ -31,3 +31,7 @@
 2021-09-29 22:34:18 nick: weghriwe
 2021-09-29 22:34:20 Ошибка в методе run() у класса ru.netology.server.Server$Connection
 2021-09-29 22:34:20 Закрытие потоков у класса ru.netology.server.Server$Connection
+2021-09-30 21:01:27 Test message LoggerTest
+2021-09-30 21:13:23 Test message LoggerTest
+2021-09-30 21:14:00 Test message LoggerTest
+2021-09-30 21:17:05 Test message LoggerTest
