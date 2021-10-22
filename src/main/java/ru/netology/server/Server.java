@@ -29,7 +29,7 @@ public class Server {
 
             while (true) {
                 socket = serverSocket.accept();
-                Connection connection = new Connection(socket);
+                final Connection connection = new Connection(socket);
                 connections.add(connection);
                 connection.start();
             }
@@ -109,8 +109,10 @@ public class Server {
         }
 
         private void sendMessageAllConnection(String message) {
-            for (Connection connection : connections) {
-                connection.sendMessage(message);
+            synchronized(connections) {
+                for (Connection connection : connections) {
+                    connection.sendMessage(message);
+                }
             }
         }
     }

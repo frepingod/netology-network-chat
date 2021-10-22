@@ -9,8 +9,6 @@ import java.util.Scanner;
 
 public class Client {
 
-    Config config = Config.getInstance();
-
     private final Logger log = Logger.getInstance();
 
     private Scanner scanner;
@@ -20,6 +18,8 @@ public class Client {
 
     public Client() {
         try {
+            final Config config = Config.getInstance();
+
             scanner = new Scanner(System.in);
             socket = new Socket(config.getHost(), config.getPort());
             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -29,7 +29,7 @@ public class Client {
             System.out.println("Введите свой никнейм:");
             out.println(scanner.nextLine());
 
-            Receiver receiver = new Receiver(in);
+            final Receiver receiver = new Receiver(in);
             receiver.start();
 
             String message = "";
@@ -57,27 +57,6 @@ public class Client {
         } catch (IOException e) {
             log.log("Ошибка при закрытии потоков у класса " + Client.class.getName());
             e.printStackTrace();
-        }
-    }
-
-    private class Receiver extends Thread {
-
-        private final BufferedReader in;
-
-        public Receiver(BufferedReader in) {
-            this.in = in;
-        }
-
-        @Override
-        public void run() {
-            try {
-                while (!Thread.currentThread().isInterrupted()) {
-                    System.out.println(in.readLine());
-                }
-            } catch (IOException e) {
-                log.log("Ошибка в методе run() у класса " + Receiver.class.getName());
-                e.printStackTrace();
-            }
         }
     }
 }
