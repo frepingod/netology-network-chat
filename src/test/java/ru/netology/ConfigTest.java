@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ConfigTest {
 
-    private final Config config = Config.getInstance();
+    private static final Config CONFIG = Config.getInstance();
     protected int port;
     protected String host;
 
@@ -31,16 +31,16 @@ class ConfigTest {
 
     @Test
     void getInstance() {
-        assertEquals(Config.getInstance(), config);
+        assertEquals(Config.getInstance(), CONFIG);
     }
 
     @Test
     void getPort() {
-        assertEquals(config.getPort(), port);
+        assertEquals(CONFIG.getPort(), port);
     }
 
     @Test
     void getHost() {
-        assertEquals(config.getHost(), host);
+        assertEquals(CONFIG.getHost(), host);
     }
 }
