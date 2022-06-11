@@ -110,9 +110,7 @@ public class Server {
 
         private void sendMessageAllConnection(String message) {
             synchronized(connections) {
-                for (Connection connection : connections) {
-                    connection.sendMessage(message);
-                }
+                connections.forEach(connection -> connection.sendMessage(message));
             }
         }
     }
