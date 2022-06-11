@@ -212,3 +212,4 @@
 2021-10-22 16:06:10 Закрытие потоков у класса ru.netology.server.Server$Connection
 2021-10-22 16:06:10 Закрытие потоков у класса ru.netology.client.Client
 2021-10-22 16:06:14 Ошибка в методе run() у класса ru.netology.client.Receiver
+2022-06-11 09:45:01 Test message LoggerTest

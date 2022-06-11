@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class Client {
 
-    private final Logger log = Logger.getInstance();
+    private static final Logger LOGGER = Logger.getInstance();
 
     private Scanner scanner;
     private Socket socket;
@@ -25,7 +25,7 @@ public class Client {
             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             out = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()), true);
 
-            log.log("Клиенту предлагают ввести свой никнейм");
+            LOGGER.log("Клиенту предлагают ввести свой никнейм");
             System.out.println("Введите свой никнейм:");
             out.println(scanner.nextLine());
 
@@ -40,10 +40,10 @@ public class Client {
 
             receiver.interrupt();
         } catch (IOException e) {
-            log.log("Ошибка в конструкторе у класса " + Client.class.getName());
+            LOGGER.log("Ошибка в конструкторе у класса " + Client.class.getName());
             e.printStackTrace();
         } finally {
-            log.log("Закрытие потоков у класса " + Client.class.getName());
+            LOGGER.log("Закрытие потоков у класса " + Client.class.getName());
             closeAll();
         }
     }
@@ -55,7 +55,7 @@ public class Client {
             out.close();
             socket.close();
         } catch (IOException e) {
-            log.log("Ошибка при закрытии потоков у класса " + Client.class.getName());
+            LOGGER.log("Ошибка при закрытии потоков у класса " + Client.class.getName());
             e.printStackTrace();
         }
     }

@@ -6,16 +6,16 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class LoggerTest {
 
-    private final Logger log = Logger.getInstance();
+    private static final Logger LOGGER = Logger.getInstance();
     private static final String MESSAGE = "Test message LoggerTest";
 
     @Test
     void getInstance() {
-        assertEquals(Logger.getInstance(), log);
+        assertEquals(Logger.getInstance(), LOGGER);
     }
 
     @Test
     void log() {
-        assertTrue(log.log(MESSAGE));
+        assertTrue(LOGGER.log(MESSAGE));
     }
 }
