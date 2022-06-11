@@ -7,7 +7,7 @@ import java.io.IOException;
 
 public class Receiver extends Thread {
 
-    private final Logger log = Logger.getInstance();
+    private static final Logger LOGGER = Logger.getInstance();
 
     private final BufferedReader in;
 
@@ -22,7 +22,7 @@ public class Receiver extends Thread {
                 System.out.println(in.readLine());
             }
         } catch (IOException e) {
-            log.log("Ошибка в методе run() у класса " + Receiver.class.getName());
+            LOGGER.log("Ошибка в методе run() у класса " + Receiver.class.getName());
             e.printStackTrace();
         }
     }

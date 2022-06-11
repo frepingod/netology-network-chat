@@ -9,7 +9,7 @@ import java.util.Properties;
 public class Config {
 
     private static Config instance;
-    private final Logger log = Logger.getInstance();
+    private static final Logger LOGGER = Logger.getInstance();
     private static final String PATH = "./config/settings.properties";
 
     private int port;
@@ -23,7 +23,7 @@ public class Config {
             port = Integer.parseInt(props.getProperty("port"));
             host = props.getProperty("host");
         } catch (IOException e) {
-            log.log("Ошибка в конструкторе у класса " + Config.class.getName());
+            LOGGER.log("Ошибка в конструкторе у класса " + Config.class.getName());
             e.printStackTrace();
         }
     }
